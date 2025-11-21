@@ -72,6 +72,16 @@ fun FormIsian(
                             modifier = Modifier.selectable(
                                 selected = txtGender == item,
                                 onClick = { txtGender = item }
+                            )) {
+                            RadioButton(
+                                selected = txtGender == item,
+                                onClick = { txtGender = item }
                             )
+                            Text(text = item)
+                        }
+                    }
+                }
+            }
+
 
 

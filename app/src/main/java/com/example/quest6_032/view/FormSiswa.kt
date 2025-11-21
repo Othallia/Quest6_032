@@ -50,7 +50,6 @@ fun FormIsian(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // --- INPUT NAMA ---
             OutlinedTextField(
                 value = txtNama,
                 onValueChange = { txtNama = it },
@@ -91,6 +90,21 @@ fun FormIsian(
                 placeholder = { Text("Masukkan alamat anda") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    onSubmitButtonClicked(mutableListOf(txtNama, txtGender, txtAlamat))
+                },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = txtNama.isNotEmpty() && txtGender.isNotEmpty() && txtAlamat.isNotEmpty()
+            ) {
+                Text(text = "Submit")
+            }
+        }
+       }
+}
 
 
 

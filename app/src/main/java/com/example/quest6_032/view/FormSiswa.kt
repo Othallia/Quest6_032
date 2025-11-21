@@ -33,7 +33,6 @@ fun FormIsian(
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // State variabel untuk menyimpan inputan user
     var txtNama by rememberSaveable { mutableStateOf("") }
     var txtAlamat by rememberSaveable { mutableStateOf("") }
     var txtGender by rememberSaveable { mutableStateOf("") }
@@ -60,4 +59,19 @@ fun FormIsian(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Masukkan nama anda") }
             )
+
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Text("Jenis Kelamin:", style = MaterialTheme.typography.labelLarge)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    pilihanJK.forEach { item ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.selectable(
+                                selected = txtGender == item,
+                                onClick = { txtGender = item }
+                            )
+
 

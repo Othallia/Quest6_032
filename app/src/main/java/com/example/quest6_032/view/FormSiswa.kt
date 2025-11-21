@@ -27,22 +27,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
-fun DataApp(
-    modifier: Modifier = Modifier,
-    viewModel: SiswaViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
-){
-    Scaffold(
-        modifier = modifier
-    ) { isiRuang ->
+@Composable
+fun FormIsian(
+    pilihanJK: List<String>,
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    // State variabel untuk menyimpan inputan user
+    var txtNama by rememberSaveable { mutableStateOf("") }
+    var txtAlamat by rememberSaveable { mutableStateOf("") }
+    var txtGender by rememberSaveable { mutableStateOf("") }
 
-        val uiState by viewModel.statusUI.collectAsState()
-
-        NavHost(
-            navController = navController,
-            startDestination = Navigasi.Formulir.name,
-            modifier = Modifier.padding(isiRuang)
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-        }
-    }
-}
+            // --- INPUT NAMA ---
+            OutlinedTextField(
+                value = txtNama,
+                onValueChange = { txtNama = it },
+                label = { Text("Nama Lengkap") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = { Text("Masukkan nama anda") }
+            )
+

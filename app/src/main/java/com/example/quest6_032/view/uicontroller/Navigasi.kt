@@ -31,11 +31,22 @@ fun DataApp(
     Scaffold(
         modifier = modifier
     ) { isiRuang ->
-        // Mengambil state terbaru dari ViewModel
         val uiState by viewModel.statusUI.collectAsState()
 
         NavHost(
             navController = navController,
             startDestination = Navigasi.Formulir.name,
             modifier = Modifier.padding(paddingValues = isiRuang)
-        )
+        ){
+            composable(route = Navigasi.Formulir.name) {
+                val konteks = LocalContext.current
+
+                FormIsian(
+                    pilihanJK = DataJK.JenisK.map { id -> konteks.resources.getString(id) },
+                    onSubmitButtonClicked = { data ->
+                        viewModel.setDataSiswa(data)
+                        navController.navigate(route = Navigasi.Detail.name)
+                    }
+                )
+            }
+

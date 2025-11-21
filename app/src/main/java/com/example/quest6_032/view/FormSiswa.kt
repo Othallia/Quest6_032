@@ -83,5 +83,15 @@ fun FormIsian(
                 }
             }
 
+            OutlinedTextField(
+                value = txtAlamat,
+                onValueChange = { txtAlamat = it },
+                label = { Text("Alamat") },
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = { Text("Masukkan alamat anda") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+            )
+
+
 
 
